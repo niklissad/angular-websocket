@@ -1,0 +1,4 @@
+<span *ngFor="let r of rating; let i = index"
+      [class.active]="r.active"
+      (click)="setRate(i+1)"
+>☆</span>

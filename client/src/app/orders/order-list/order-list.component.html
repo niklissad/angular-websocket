@@ -1,0 +1,60 @@
+<mat-table [dataSource]="ordersSource" matSort>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    <ng-container matColumnDef="order_id">
+        <mat-header-cell *matHeaderCellDef>
+            ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let order">
+            {{order.order_id}}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="driver_phone">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>
+            Driver phone
+        </mat-header-cell>
+        <mat-cell *matCellDef="let order">
+            {{order.driver_phone}}
+            </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pass_phone">
+        <mat-header-cell *matHeaderCellDef>
+            Passenger phone
+        </mat-header-cell>
+        <mat-cell *matCellDef="let order">
+            {{order.pass_phone}}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rating">
+        <mat-header-cell *matHeaderCellDef>
+            Rating
+        </mat-header-cell>
+        <mat-cell *matCellDef="let order">
+            <app-rating [(ngModel)]="order.rating" [editable]="false"></app-rating>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+            Actions
+        </mat-header-cell>
+        <mat-cell  *matCellDef="let order">
+            <button mat-raised-button color="warn" (click)="closeOrder(order)">
+                Close
+            </button>
+            <button (click)="editOrder(order)" mat-raised-button color="primary" class="mar-left">
+                Details
+            </button>
+        </mat-cell>
+    </ng-container>
+
+</mat-table>
+
+<div class="no-orders" *ngIf="db.length < 1">
+    <small>There is no orders</small>
+</div>

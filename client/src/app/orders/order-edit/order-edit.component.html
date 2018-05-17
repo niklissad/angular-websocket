@@ -1,0 +1,27 @@
+<h3 mat-dialog-title>Order #{{order.order_id}}</h3>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+    <mat-list>
+        <mat-list-item>
+            <h4 class="list-caption">Driver phone</h4>
+            <p>{{order.driver_phone}}</p>
+        </mat-list-item>
+        <mat-list-item>
+            <h4 class="list-caption">Passenger phone</h4>
+            <p>{{order.pass_phone}}</p>
+        </mat-list-item>
+        <mat-list-item>
+            <h4 class="list-caption">Change rating</h4>
+            <app-rating [(ngModel)]="order.rating"></app-rating>
+        </mat-list-item>
+    </mat-list>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="order" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
