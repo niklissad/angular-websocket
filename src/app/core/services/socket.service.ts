@@ -9,7 +9,7 @@ import {environment} from "../../../environments/environment";
 })
 export class SocketService {
 
-    private host = `http://localhost:${environment.port}`;
+    private host = `${environment.host}:${environment.port}`;
     private socket: any;
 
     constructor(private db: DbService) {

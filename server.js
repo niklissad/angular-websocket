@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const port = process.env.PORT || 3000;
+const port = Number(process.env.PORT || 3000);
 
 let id = 0;
 
@@ -51,8 +51,12 @@ http.listen(port, function(){
     console.log(`ws listening on *:${port}`);
 });
 
-app.use('/static', express.static(__dirname + '/client/dist/orders'));
+app.use('/static', express.static(__dirname + '/dist/orders'));
 
-app.get('*', function(req, res){
-    res.sendFile(__dirname + '/client/dist/orders/index.html');
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/dist/orders/index.html');
+});
+
+app.get('/orders', function(req, res){
+    res.redirect('/');
 });
