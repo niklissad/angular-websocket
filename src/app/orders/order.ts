@@ -2,9 +2,9 @@ export class Order {
     static STATUS_ACTIVE = 'ACTIVE';
     static STATUS_COMPLETED = 'COMPLETED';
 
-    order_id: number;
-    driver_phone: string;
-    pass_phone: string;
+    orderId: number;
+    driverPhone: string;
+    passPhone: string;
     rating: number;
     status?: string;
 }

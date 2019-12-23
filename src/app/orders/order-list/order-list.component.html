@@ -1,32 +1,32 @@
-<mat-table [dataSource]="ordersSource" matSort>
+<mat-table [dataSource]="ordersSource">
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-    <ng-container matColumnDef="order_id">
+    <ng-container matColumnDef="orderId">
         <mat-header-cell *matHeaderCellDef>
             ID
         </mat-header-cell>
         <mat-cell *matCellDef="let order">
-            {{order.order_id}}
+            {{order.orderId}}
         </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="driver_phone">
+    <ng-container matColumnDef="driverPhone">
         <mat-header-cell mat-header-cell *matHeaderCellDef>
             Driver phone
         </mat-header-cell>
         <mat-cell *matCellDef="let order">
-            {{order.driver_phone}}
+            {{order.driverPhone}}
             </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="pass_phone">
+    <ng-container matColumnDef="passPhone">
         <mat-header-cell *matHeaderCellDef>
             Passenger phone
         </mat-header-cell>
         <mat-cell *matCellDef="let order">
-            {{order.pass_phone}}
+            {{order.passPhone}}
         </mat-cell>
     </ng-container>
 

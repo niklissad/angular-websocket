@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import * as io from 'socket.io-client'
-import {DbService} from "./db.service";
+import * as io from 'socket.io-client';
 import {Observable} from 'rxjs';
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -12,11 +11,10 @@ export class SocketService {
     private host = `${environment.host}:${environment.port}`;
     private socket: any;
 
-    constructor(private db: DbService) {
+    constructor() {
     }
 
     connect() {
-
         this.socket.on('connect', () => {
             console.log('[INFO] Connected to ws');
         });

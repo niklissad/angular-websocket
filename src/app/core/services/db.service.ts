@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Order} from "../../orders/order";
+import {Order} from '../../orders/order';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +23,12 @@ export class DbService {
 
     setRate(order: Order, rating: number) {
         order.rating = rating;
-        this.orders.set(order.order_id, order);
+        this.orders.set(order.orderId, order);
     }
 
     changeStatus(order: Order) {
         order.status = Order.STATUS_COMPLETED;
-        this.orders.set(order.order_id, order);
+        this.orders.set(order.orderId, order);
     }
 
     removeLast() {
@@ -37,7 +37,7 @@ export class DbService {
 
     addOrder(order: Order) {
         order = Object.assign(order, {status: Order.STATUS_ACTIVE});
-        this.orders.set(order.order_id, order);
+        this.orders.set(order.orderId, order);
     }
 
 }

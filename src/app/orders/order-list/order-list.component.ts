@@ -1,12 +1,14 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
-import {MatTableDataSource, MatSort, MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 
-import {Order} from "../order";
-import {SocketService} from "../../core/services/socket.service";
-import {DbService} from "../../core/services/db.service";
+import {Order} from '../order';
+import {SocketService} from '../../core/services/socket.service';
+import {DbService} from '../../core/services/db.service';
 import {Subscription} from 'rxjs';
-import {OrderEditComponent} from "../order-edit/order-edit.component";
+import {OrderEditComponent} from '../order-edit/order-edit.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-order-list',
@@ -17,7 +19,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
     public ordersSource = new MatTableDataSource();
 
-    public displayedColumns = ['order_id', 'driver_phone', 'pass_phone', 'rating', 'actions'];
+    public displayedColumns = ['orderId', 'driverPhone', 'passPhone', 'rating', 'actions'];
 
     private connection: Subscription;
 
@@ -38,13 +40,15 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
     editOrder(order) {
 
-        let dialogRef = this.dialog.open(OrderEditComponent, {
+        const dialogRef = this.dialog.open(OrderEditComponent, {
             height: '300px',
             width: '600px',
             data: Object.assign({}, order)
         });
 
-        dialogRef.afterClosed().subscribe(editedOrder => {
+        dialogRef.afterClosed()
+          .pipe(filter(o => !!o))
+          .subscribe(editedOrder => {
             this.db.setRate(order, editedOrder.rating);
             this.updateData();
         });
@@ -63,7 +67,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
             this.db.addOrder(Object.assign(data, {status: Order.STATUS_ACTIVE}));
             this.ordersSource.data = this.db.getOrders();
-        })
+        });
 
     }
 

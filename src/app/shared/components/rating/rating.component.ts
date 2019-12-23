@@ -29,8 +29,7 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
     constructor() {
     }
 
-    private propagateChange = (_: any) => {
-    };
+    private propagateChange = (_: any) => {};
 
     writeValue(rate) {
         if (rate) {
